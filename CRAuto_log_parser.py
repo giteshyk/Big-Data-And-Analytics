@@ -3,11 +3,12 @@ import glob
 import pandas as pd
 import datetime
 import time
+import os 
 
 
 def cr_auto_log_parser():
     # using glob to extract the path names that are specific to required log files
-    raw_data_files = glob.glob('C:\log_files\*\*.log')
+    raw_data_files = glob.glob('C:\Temp\AutoLogs\*.log')
 
     # arrays belonging to each field that is going to be in our pandas dataframe obatined after processing
     warnings = []
@@ -121,8 +122,9 @@ def cr_auto_log_parser():
             'Time_taken(m)': time_taken}
 
     logs_df = pd.DataFrame(data=data)
-    logs_df.to_csv(path_or_buf=r"C:\Spark\CSVs\CRAuto_CSV_" + time.strftime('%Y-%m-%d_%H-%S') + ".csv")
-
+    if not os.path.exists("C:\Temp\CRAuto_csvs"):
+        os.makedirs("C:\Temp\CRAuto_csvs")
+    logs_df.to_csv(path_or_buf=r"C:\Temp\CRAuto_csvs\CRAuto_CSV_" + time.strftime('%Y-%m-%d_%H-%S') + ".csv")
 
 if __name__ == '__main__':
     cr_auto_log_parser()
