@@ -13,34 +13,13 @@ raw_data_files = glob.glob(r'C:\log_files\summarizer_log_files\*\Test\summary_ad
 
 #will store the data in lists, and in future these lists can be used in data_frames
 
-time_stamps = []
-hosts = []
-test_sequence = []
-gb_reads = []
-unexpected_events = []
-expected_events = []
-total_injections = []
-total_state_transitions = []
-transition_1 = []
-transition_2 = []
-transition_3 = []
-transition_4 = []
-transition_5 = []
-transition_6 = []
-transition_7 = []
-transition_8 = []
-transition_9 = []
-transition_10 = []
-transition_11 = []
-transition_12 = []
-transition_13 = []
-transition_14 = []
-transition_15 = []
-transition_16 = []
-transition_17 = []
+#declare lists
+
+list1 = []
+list2 = []
 
 #patterns if regular expressions are required to pull out data
-host_pattern = r"((BA|JF)\S+-\S+)"
+some_pattern = r"((BA|JF)\S+-\S+)"
 gb_reads_pattern = "\d+.\d+"
 events_pattern = "\d+"
 time_stamp_pattern = r"(\d{4}-\d{2}-\d{2})"
@@ -51,77 +30,22 @@ for item1 in raw_data_files:
     with open(item1, "r") as f:
             sample_log = list(f)
     
-    host_name = "NF"
-    test_sequence_name = "NF"
-    gb_reads_name = "NF"
-    unexpected_events_name = "NF"
-    expected_events_name = "NF"
-    total_injections_name = "NF"
-    total_state_transitions_name = "NF"
-    test_sequence_name = "NF"
-    transition_1_name = 0
-    transition_2_name = 0
-    transition_3_name = 0
-    transition_4_name = 0
-    transition_5_name = 0
-    transition_6_name = 0
-    transition_7_name = 0
-    transition_8_name = 0
-    transition_9_name = 0
-    transition_10_name = 0
-    transition_11_name = 0
-    transition_12_name = 0
-    transition_13_name = 0
-    transition_14_name = 0
-    transition_15_name = 0
-    transition_16_name = 0
-    transition_17_name = 0
+    variable1 = 'NF'
+    variable2 = 'NF'
             
     for item in sample_log:
-        if(item.find("Garbage/bad reads:")) != -1:
+        if(item.find("somthing that is present in log and if matches then extract data")) != -1:
             gb_reads_name = re.search(gb_reads_pattern,item).group(0)
-        if(item.find("expected, out of total")) != -1:
-            unexpected_events_name = re.findall(events_pattern,item)[0]
-            expected_events_name = re.findall(events_pattern,item)[1]
-            total_injections_name = re.findall(events_pattern,item)[2]
-        if(item.find("total state_transitions:")) != -1:
-            total_state_transitions_name = re.search("\d+",item).group(0)
+        if(item.find("something that matches")) != -1:
+            var_name1 = re.findall(events_pattern,item)[0]
+            var_name2 = re.findall(events_pattern,item)[1]
+            tbars_name3 = re.findall(events_pattern,item)[2]
+        if(item.find("something that matches")) != -1:
+            var_name4 = re.search("\d+",item).group(0)
             
-        if(item.find("unused to BANK:r0:2a:")) != -1:
-            transition_1_name = re.findall("\d+",item)[-1]
-        if(item.find("unused to BANK:r0")) != -1:
-            transition_2_name = re.findall("\d+",item)[-1]
-        if(item.find("BANK:r0:2a to BANK:r0:BANK:r1:2b")) != -1:
-            transition_3_name = re.findall("\d+",item)[-1]
-        if(item.find("BANK:r0 to BANK:r0:r1")) != -1:
-            transition_4_name = re.findall("\d+",item)[-1]
-        if(item.find("BANK:r0 to RANK:r0")) != -1:
-            transition_5_name = re.findall("\d+",item)[-1]
-        if(item.find("BANK:r0 to BANK:RESPARE:r0:r1")) != -1:
-            transition_6_name = re.findall("\d+",item)[-1]
-        if(item.find("BANK:r0 to BANK:r0:BANK:r1:6a")) != -1:
-            transition_7_name = re.findall("\d+",item)[-1]    
-        if(item.find("BANK:r0 to BANK:r0:BANK:r1")) != -1:
-            transition_8_name = re.findall("\d+",item)[-1]
-        if(item.find("RANK:r0 to RANK:r0:BANK:r1:6b")) != -1:
-            transition_9_name = re.findall("\d+",item)[-1]
-        if(item.find("RANK:r0 to RANK:r0:BANK:r1")) != -1:
-            transition_10_name = re.findall("\d+",item)[-1]
-        if(item.find("RANK:r0 to RANK:RESPARE:r0:BANK:r1")) != -1:
-            transition_11_name = re.findall("\d+",item)[-1]
-        if(item.find("BANK:r0:BANK:r1:6a to RANK:r0:BANK:r1:6b")) != -1:
-            transition_12_name = re.findall("\d+",item)[-1]
-        if(item.find("BANK:r0:BANK:r1 to RANK:r0:BANK:r1")) != -1:
-            transition_13_name = re.findall("\d+",item)[-1]
-        if(item.find("BANK:r0:BANK:r1 to BANK:r0:RANK:r1")) != -1:
-            transition_14_name = re.findall("\d+",item)[-1]
-        if(item.find("RANK:r0:BANK:r1 to RANK:r0:RANK:r1")) != -1:
-            transition_15_name = re.findall("\d+",item)[-1]
-        if(item.find("BANK:r0:RANK:r1 to RANK:r0:RANK:r1")) != -1:
-            transition_16_name = re.findall("\d+",item)[-1]
-        if(item.find("RANK:RESPARE:r0:BANK:r1 to RANK:r0:RANK:r1")) != -1:
-            transition_17_name = re.findall("\d+",item)[-1]
-            
+        if(item.find("something that matches")) != -1:
+            var_1_name5 = re.findall("\d+",item)[-1]
+    
     
     sample_log = []
     auto_logs = []
