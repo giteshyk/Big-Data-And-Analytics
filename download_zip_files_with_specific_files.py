@@ -12,7 +12,7 @@ from zipfile import BadZipFile
 from shutil import copyfile
 
 #get all the zip files from certain location with glob,in my case a shared location 
-raw_data_files = glob.glob(r'\\vmspfsfsbg06.gar.corp.intel.com\HexaLogs\XPIV\BDC\*\*\*\*.zip') 
+raw_data_files = glob.glob(r'\\Logs\*\*\*\*.zip') 
 
 #list that will have locaitons of the required files
 zip_with_summary_files = []
